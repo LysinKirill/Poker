@@ -1,0 +1,14 @@
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\bin\Debug\net6.0\Poker.exe
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\bin\Debug\net6.0\Poker.deps.json
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\bin\Debug\net6.0\Poker.runtimeconfig.json
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\bin\Debug\net6.0\Poker.dll
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\bin\Debug\net6.0\Poker.pdb
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.AssemblyInfoInputs.cache
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.AssemblyInfo.cs
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.csproj.CoreCompileInputs.cache
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.dll
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\refint\Poker.dll
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.pdb
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.genruntimeconfig.cache
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\ref\Poker.dll
