@@ -2,10 +2,14 @@
 
 public class Table
 {
-    public List<Card> DealtCards { get; } = new(5);
-    public int NumberOfCards { get; private set; } = 0;
-    public List<Participant> Players { get; init; } = new();
+    public List<Card> DealtCards { get; } = new List<Card>(5);
+    //public int NumberOfCards { get; private set; } = 0;
+    public List<Participant> Participants { get; init; } = new();
 
+    public Table(List<Participant> participants)
+    {
+        Participants = participants;
+    }
 
     public int CompareHands(Hand firstHand, Hand secondHand)
     {
@@ -101,20 +105,25 @@ public class Table
 
         cards = cards.OrderByDescending(card => card.CardValue).ToList();
 
-        var currConsecutive = 0;
-        var prevCardValue = 0;
+        int currConsecutive = 0;
+        int prevCardValue = 0;
 
-        var setValue = 0;
-        var pairValue = 0;
+        int setValue = 0;
+        int pairValue = 0;
 
-        foreach (var card in cards)
+        foreach (Card card in cards)
         {
             if (card.CardValue != prevCardValue)
             {
-                if (currConsecutive == 3 && setValue == 0)
-                    setValue = prevCardValue;
-                if (currConsecutive == 2 && pairValue == 0)
-                    pairValue = prevCardValue;
+                switch (currConsecutive)
+                {
+                    case 3 when setValue == 0:
+                        setValue = prevCardValue;
+                        break;
+                    case 2 when pairValue == 0:
+                        pairValue = prevCardValue;
+                        break;
+                }
 
                 currConsecutive = 0;
                 prevCardValue = card.CardValue;
@@ -135,12 +144,11 @@ public class Table
         if (cards.Count < 5)
             return 0;
 
-        foreach (var suitGroup in cards.GroupBy(card => card.Suit))
-            if (suitGroup.Count() >= 5)
-                //return suitGroup.OrderByDescending(card => card.CardValue).Select(card => card.CardValue).Take(5).ToList();
-                return suitGroup.MaxBy(card => card.CardValue)!.CardValue;
-
-        return 0;
+        return cards
+            .GroupBy(card => card.Suit)
+            .Where(suitGroup => suitGroup.Count() >= 5)
+            .Select(suitGroup => suitGroup.MaxBy(card => card.CardValue)!.CardValue)
+            .FirstOrDefault();
     }
 
     private static int CheckStraight(List<Card> cards)
@@ -152,7 +160,7 @@ public class Table
         int currConsecutive = 0;
         int prevCardValue = 0;
 
-        foreach (var card in cards)
+        foreach (Card card in cards)
         {
             if (card.CardValue != prevCardValue - 1 && !(card.CardValue == 14 && prevCardValue == 2))
             {
@@ -171,25 +179,28 @@ public class Table
         return 0;
     }
 
-    public static (int, int) CheckSet(List<Card> cards)
+    private static (int, int) CheckSet(List<Card> cards)
     {
         if (cards.Count < 3)
             return (0, 0);
 
 
-        var t = cards.GroupBy(card => card.CardValue).OrderByDescending(x => x.Key).FirstOrDefault(x => x.Count() == 3);
+        var valueGroup = cards
+            .GroupBy(card => card.CardValue)
+            .OrderByDescending(x => x.Key)
+            .FirstOrDefault(x => x.Count() == 3);
 
-        if (t is null)
+        if (valueGroup is null)
             return (0, 0);
 
-        foreach (var card in cards.OrderByDescending(card => card.CardValue))
+        foreach (Card card in cards.OrderByDescending(card => card.CardValue))
         {
-            if (card.CardValue == t.Key)
+            if (card.CardValue == valueGroup.Key)
                 continue;
-            return (t.Key, card.CardValue);
+            return (valueGroup.Key, card.CardValue);
         }
 
-        return (t.Key, 0);
+        return (valueGroup.Key, 0);
     }
 
     private static (int, int, int) CheckTwoPair(List<Card> cards)
@@ -197,8 +208,11 @@ public class Table
         if (cards.Count < 4)
             return (0, 0, 0);
 
-        var twoGroups = cards.GroupBy(card => card.CardValue).Where(group => group.Count() == 2)
-            .OrderByDescending(group => group.Key).ToList();
+        var twoGroups = cards
+            .GroupBy(card => card.CardValue)
+            .Where(group => group.Count() == 2)
+            .OrderByDescending(group => group.Key)
+            .ToList();
 
         if (twoGroups.Count < 2)
             return (0, 0, 0);

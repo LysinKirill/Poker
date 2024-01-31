@@ -12,3 +12,4 @@ C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\refint\Poker
 C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.pdb
 C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.genruntimeconfig.cache
 C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\ref\Poker.dll
+C:\Users\Kirill\Desktop\TinkoffContest\Poker\Poker\obj\Debug\net6.0\Poker.sourcelink.json

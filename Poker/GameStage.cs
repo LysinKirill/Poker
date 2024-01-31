@@ -2,8 +2,10 @@
 
 public enum GameStage
 {
-    Preflop = 0,
-    Flop = 1,
-    Turn = 2,
-    River = 3,
+    GameStart = 0,
+    Preflop = 1,
+    Flop = 2,
+    Turn = 3,
+    River = 4,
+    GameEnd = 5,
 }

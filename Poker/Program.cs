@@ -10,9 +10,17 @@ class Program
     {
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;
-        Card card = Card.ParseCard(Console.ReadLine());
+
+        List<Participant> players = new List<Participant>()
+        {
+            new Player("Amogus", 1000),
+            new Player("Sus", 1000),
+        };
         
-        Console.WriteLine(card);
+        Session session = new Session(players, 10);
+        session.StartSession();
+        
+        players.ForEach(Console.WriteLine);
     }
 }
 
